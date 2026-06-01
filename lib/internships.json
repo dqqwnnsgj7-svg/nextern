@@ -1,0 +1,102 @@
+[
+  {
+    "id": "1",
+    "company": "Stripe",
+    "role": "Data Analytics Intern",
+    "sector": "tech",
+    "location": "remote",
+    "description": "Join Stripe's Data team to build dashboards and reports that inform product decisions. You'll write SQL, explore large datasets, and present findings to PMs and engineers.",
+    "requirements": ["SQL", "Python or R", "data visualization", "statistical thinking"],
+    "tags": ["data", "analytics", "fintech", "remote"]
+  },
+  {
+    "id": "2",
+    "company": "Figma",
+    "role": "Product Design Intern",
+    "sector": "design",
+    "location": "San Francisco, CA",
+    "description": "Work alongside Figma's product design team to craft new features used by millions of designers. Contribute to full design cycles from research to high-fidelity prototypes.",
+    "requirements": ["Figma", "user research", "interaction design", "visual design"],
+    "tags": ["design", "product", "SaaS", "in-person"]
+  },
+  {
+    "id": "3",
+    "company": "Two Sigma",
+    "role": "Quantitative Research Intern",
+    "sector": "finance",
+    "location": "New York, NY",
+    "description": "Apply machine learning and statistical modeling to real financial datasets. Work on alpha research, signal development, and strategy backtesting in a rigorous quant environment.",
+    "requirements": ["Python", "statistics", "machine learning", "linear algebra"],
+    "tags": ["quant", "finance", "ML", "in-person"]
+  },
+  {
+    "id": "4",
+    "company": "Spotify",
+    "role": "Data Science Intern",
+    "sector": "tech",
+    "location": "remote",
+    "description": "Help Spotify's personalization team improve recommendation algorithms. Analyze listening behavior, run A/B tests, and build models that power Discover Weekly and Daily Mixes.",
+    "requirements": ["Python", "SQL", "machine learning", "A/B testing"],
+    "tags": ["data science", "ML", "music tech", "remote"]
+  },
+  {
+    "id": "5",
+    "company": "HubSpot",
+    "role": "Marketing Analytics Intern",
+    "sector": "marketing",
+    "location": "remote",
+    "description": "Support HubSpot's growth marketing team by analyzing campaign performance, building attribution models, and creating Tableau dashboards for the CMO.",
+    "requirements": ["SQL", "Tableau or Looker", "Google Analytics", "Excel"],
+    "tags": ["marketing", "analytics", "SaaS", "remote"]
+  },
+  {
+    "id": "6",
+    "company": "Palantir",
+    "role": "Forward Deployed Software Engineering Intern",
+    "sector": "tech",
+    "location": "Washington, DC",
+    "description": "Embed with a government or enterprise client and build custom data pipelines and dashboards using Palantir Foundry. Requires adaptability and strong communication skills.",
+    "requirements": ["Java or Python", "data engineering", "client communication", "SQL"],
+    "tags": ["data engineering", "consulting", "government tech", "in-person"]
+  },
+  {
+    "id": "7",
+    "company": "Goldman Sachs",
+    "role": "Investment Banking Analyst Intern",
+    "sector": "finance",
+    "location": "New York, NY",
+    "description": "Rotate through deal teams building financial models, creating pitch books, and supporting M&A and capital markets transactions. Fast-paced and client-facing environment.",
+    "requirements": ["financial modeling", "Excel", "PowerPoint", "accounting basics"],
+    "tags": ["finance", "banking", "IB", "in-person"]
+  },
+  {
+    "id": "8",
+    "company": "Airbnb",
+    "role": "UX Research Intern",
+    "sector": "design",
+    "location": "San Francisco, CA",
+    "description": "Plan and conduct user studies — interviews, usability tests, diary studies — and synthesize insights to influence product direction for Airbnb's host and guest experiences.",
+    "requirements": ["user interviews", "usability testing", "research synthesis", "presentation skills"],
+    "tags": ["UX research", "design", "travel tech", "in-person"]
+  },
+  {
+    "id": "9",
+    "company": "Klaviyo",
+    "role": "Growth Marketing Intern",
+    "sector": "marketing",
+    "location": "Boston, MA",
+    "description": "Run lifecycle email and SMS campaigns for Klaviyo's SMB segment. Set up automated flows, write copy, run split tests, and report on open rates, clicks, and revenue impact.",
+    "requirements": ["email marketing", "copywriting", "A/B testing", "CRM basics"],
+    "tags": ["marketing", "email", "growth", "in-person"]
+  },
+  {
+    "id": "10",
+    "company": "Snowflake",
+    "role": "Business Intelligence Intern",
+    "sector": "tech",
+    "location": "remote",
+    "description": "Build and maintain BI dashboards in Sigma Computing on top of Snowflake's own data warehouse. Partner with Finance and Sales Ops to automate recurring reports.",
+    "requirements": ["SQL", "BI tools (Sigma, Tableau, or Looker)", "data modeling", "stakeholder communication"],
+    "tags": ["BI", "data", "cloud", "remote"]
+  }
+]
