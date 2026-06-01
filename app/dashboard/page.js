@@ -73,12 +73,24 @@ function ScoreBar({ score }) {
 function DashboardContent() {
   const searchParams = useSearchParams();
   const isSample = searchParams.get("sample") === "true";
-  const student = isSample ? SAMPLE_STUDENT : null;
+  const fromOnboarding = searchParams.get("from") === "onboarding";
 
+  const [student, setStudent] = useState(isSample ? SAMPLE_STUDENT : null);
   const [matches, setMatches] = useState(null);
   const [matchLoading, setMatchLoading] = useState(false);
   const [plan, setPlan] = useState(null);
   const [planLoading, setPlanLoading] = useState(false);
+
+  // Load real profile from sessionStorage on mount when arriving from onboarding
+  useEffect(() => {
+    if (!fromOnboarding) return;
+    try {
+      const raw = sessionStorage.getItem("nextern_profile");
+      if (raw) setStudent(JSON.parse(raw));
+    } catch {
+      // sessionStorage unavailable — student stays null
+    }
+  }, [fromOnboarding]);
 
   useEffect(() => {
     if (!student) return;
@@ -97,9 +109,7 @@ function DashboardContent() {
     })
       .then((r) => r.json())
       .then((data) => setMatches(data.results))
-      .catch(() =>
-        setMatches(null)
-      )
+      .catch(() => setMatches(null))
       .finally(() => setMatchLoading(false));
 
     setPlanLoading(true);
@@ -115,15 +125,20 @@ function DashboardContent() {
       .then((data) => setPlan(data))
       .catch(() => setPlan(null))
       .finally(() => setPlanLoading(false));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSample]);
+  }, [student]);
 
   if (!student) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="bg-white rounded-2xl shadow p-10 text-center max-w-md w-full">
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">Dashboard</h1>
-          <p className="text-slate-500">Upload your resume to get started.</p>
+      <div className="min-h-screen flex items-center justify-center bg-slate-900">
+        <div className="bg-slate-800 rounded-2xl border border-slate-700 p-10 text-center max-w-md w-full">
+          <h1 className="text-2xl font-bold text-white mb-2">Dashboard</h1>
+          <p className="text-slate-400 mb-6">Complete onboarding to see your matches.</p>
+          <a
+            href="/onboarding"
+            className="bg-emerald-500 hover:bg-emerald-400 text-white font-semibold px-6 py-3 rounded-xl transition-colors inline-block text-sm"
+          >
+            Get started →
+          </a>
         </div>
       </div>
     );
@@ -136,9 +151,15 @@ function DashboardContent() {
       {/* Nav */}
       <nav className="px-8 py-5 flex items-center justify-between border-b border-slate-800">
         <span className="text-white font-bold text-xl tracking-tight">Nextern</span>
-        <span className="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium px-3 py-1 rounded-full">
-          Sample profile loaded
-        </span>
+        {isSample ? (
+          <span className="bg-amber-500/10 border border-amber-500/30 text-amber-400 text-xs font-medium px-3 py-1 rounded-full">
+            Sample profile loaded
+          </span>
+        ) : (
+          <span className="bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium px-3 py-1 rounded-full">
+            {student.name ? `${student.name}'s profile` : "Your profile"}
+          </span>
+        )}
       </nav>
 
       <div className="max-w-6xl mx-auto px-6 py-10 grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -160,18 +181,32 @@ function DashboardContent() {
                 <div className="text-slate-500 uppercase tracking-wide text-xs mb-1">Goal</div>
                 <div className="text-slate-200">{student.goal}</div>
               </div>
-              <div>
-                <div className="text-slate-500 uppercase tracking-wide text-xs mb-1">GPA</div>
-                <div className="text-slate-200">{student.gpa}</div>
-              </div>
-              <div>
-                <div className="text-slate-500 uppercase tracking-wide text-xs mb-1">Skills on resume</div>
-                <div className="flex flex-wrap gap-1.5 mt-1">
-                  {student.skills.map((s) => (
-                    <span key={s} className="bg-slate-700 text-slate-300 text-xs px-2 py-0.5 rounded-full">{s}</span>
-                  ))}
+              {student.gpa && (
+                <div>
+                  <div className="text-slate-500 uppercase tracking-wide text-xs mb-1">GPA</div>
+                  <div className="text-slate-200">{student.gpa}</div>
                 </div>
-              </div>
+              )}
+              {student.skills?.length > 0 && (
+                <div>
+                  <div className="text-slate-500 uppercase tracking-wide text-xs mb-1">Skills on resume</div>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {student.skills.map((s) => (
+                      <span key={s} className="bg-slate-700 text-slate-300 text-xs px-2 py-0.5 rounded-full">{s}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
+              {student.targetIndustries?.length > 0 && (
+                <div>
+                  <div className="text-slate-500 uppercase tracking-wide text-xs mb-1">Target industries</div>
+                  <div className="flex flex-wrap gap-1.5 mt-1">
+                    {student.targetIndustries.map((id) => (
+                      <span key={id} className="bg-slate-700 text-slate-300 text-xs px-2 py-0.5 rounded-full capitalize">{id}</span>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
